@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initilizeFirebase from "../Pages/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { password } from "@mui/icons-material";
 
 initilizeFirebase();
@@ -11,9 +11,9 @@ const useFirebase = () => {
     const [authError, setAuthError] = useState('');
 
     const auth = getAuth();
+    const googleProvider = new GoogleAuthProvider();
 
-
-    const registerUser = (email, password) => {
+    const registerUser = (email, password, location, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
 
@@ -31,10 +31,12 @@ const useFirebase = () => {
     }
 
 
-    const loginUser = (email, password) => {
+    const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
                 setAuthError('');
             })
             .catch((error) => {
@@ -42,6 +44,22 @@ const useFirebase = () => {
             })
             .finally(() => setIsLoading(false));
     }
+
+
+
+
+    const signInWithGoogle = (location, history) => {
+        setIsLoading(true);
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                setAuthError('');
+            }).catch((error) => {
+                setAuthError(error.message);
+            }).finally(() => setIsLoading(false));
+
+    }
+
 
 
     useEffect(() => {
@@ -76,6 +94,7 @@ const useFirebase = () => {
         registerUser,
         loginUser,
         logout,
+        signInWithGoogle,
     }
 
 

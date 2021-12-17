@@ -3,10 +3,14 @@ import { Alert, Button, CircularProgress, Container, Grid, TextField, Typography
 import city from '../../../images/city6.jpg';
 import { NavLink } from 'react-router-dom';
 import useAuth from './../../../hooks/useAuth';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const { user, isLoading, authError, registerUser, loginUser } = useAuth();
+    const { user, isLoading, authError, registerUser, loginUser, signInWithGoogle } = useAuth();
+    const location = useLocation();
+    const history = useHistory();
+
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -16,9 +20,14 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
-        loginUser(loginData.email, loginData.password);
+        loginUser(loginData.email, loginData.password, location, history);
         // alert('done');
         e.preventDefault();
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history);
+
     }
     return (
         <Container>
@@ -62,7 +71,8 @@ const Login = () => {
                         </NavLink>
 
                     </form>}
-
+                    <p>-------------------------------</p>
+                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button>
                     {
                         isLoading && <CircularProgress />
                     }
