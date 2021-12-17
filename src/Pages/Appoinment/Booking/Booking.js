@@ -19,7 +19,7 @@ const styles =
     }
 };
 
-const Booking = ({ booking, date }) => {
+const Booking = ({ booking, date, setBookingSuccess }) => {
 
 
     const [openBooking, setBookingOpen] = React.useState(false);
@@ -57,6 +57,7 @@ const Booking = ({ booking, date }) => {
                 handleBookingClose={handleBookingClose}
                 openBooking={openBooking}
                 booking={booking}
+                setBookingSuccess={setBookingSuccess}
             >
             </BookingModal>
         </>

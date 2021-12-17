@@ -19,7 +19,7 @@ const style = {
     p: 4,
 };
 
-const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
+const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBookingSuccess }) => {
 
     const { name, rate } = booking;
     const { user } = useAuth();
@@ -35,6 +35,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
     }
     const handleBookingSubmit = e => {
         // alert('Submitting');
+        //Collect data
         const appoinment = {
             ...bookingInfo,
             rate,
@@ -42,13 +43,27 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
             date: date.toLocaleDateString()
         }
 
-        console.log(appoinment);
-
-        //Collect data
-
+        // console.log(appoinment);
 
         //send to the server
-        handleBookingClose();
+        fetch('http://localhost:5000/appoinments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(appoinment)
+        })
+
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                if (data.insertedId) {
+                    setBookingSuccess(true);
+                    handleBookingClose();
+                }
+            })
+
+
         e.preventDefault();
     }
 

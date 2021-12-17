@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cycle1 from '../../../images/cycle1.jpg';
 import bike from '../../../images/bike.jpg';
 import car1 from '../../../images/car.jpg';
 import car2 from '../../../images/car.jpg';
 import suv1 from '../../../images/suv1.PNG';
 import suv2 from '../../../images/suv3.png';
-import { Container, Grid, Typography } from '@mui/material';
+import { Alert, Container, Grid, Typography } from '@mui/material';
 import Booking from '../Booking/Booking';
 const bookings = [
     {
@@ -54,9 +54,13 @@ const bookings = [
 ]
 
 const Available = ({ date }) => {
+    const [bookingSuccess, setBookingSuccess] = useState(false);
     return (
         <Container>
             <Typography variant='h3' sx={{ color: '#73c6b6', my: 5 }}>Available vehicles on : {date.toDateString()}</Typography>
+            {
+                bookingSuccess && <Alert severity="success">Booked successfully!</Alert>
+            }
             <Grid container spacing={2}>
                 {
                     bookings.map(booking => <Booking
@@ -64,7 +68,7 @@ const Available = ({ date }) => {
                         key={booking.id}
                         date={date}
                         booking={booking}
-
+                        setBookingSuccess={setBookingSuccess}
                     ></Booking>)
                 }
             </Grid>
