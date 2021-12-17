@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { TextFields } from '@mui/icons-material';
+import useAuth from '../../../../hooks/useAuth'
 const style = {
     position: 'absolute',
     top: '50%',
@@ -21,6 +22,7 @@ const style = {
 const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
 
     const { name, rate } = booking;
+    const { user } = useAuth();
     const handleBookingSubmit = e => {
         alert('Submitting');
         handleBookingClose();
@@ -63,6 +65,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-number"
                             placeholder='Your Name'
+                            defaultValue={user.displayName}
                             type="text"
                         />
                         <TextField
@@ -77,6 +80,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             sx={{ width: '90%', m: 1 }}
                             id="outlined-number"
                             placeholder='Your Email'
+                            defaultValue={user.email}
                             type="email"
                         />
                         <TextField
