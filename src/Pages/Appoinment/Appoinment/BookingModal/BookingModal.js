@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -23,13 +23,32 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
 
     const { name, rate } = booking;
     const { user } = useAuth();
+    const [bookingInfo, setBookingInfo] = useState({});
+    const handleOnBlur = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newInfo = { ...bookingInfo };
+        newInfo[field] = value;
+        // console.log(newInfo);
+        setBookingInfo(newInfo);
+
+    }
     const handleBookingSubmit = e => {
-        alert('Submitting');
-        handleBookingClose();
+        // alert('Submitting');
+        const appoinment = {
+            ...bookingInfo,
+            rate,
+            serviceName: name,
+            date: date.toLocaleDateString()
+        }
+
+        console.log(appoinment);
 
         //Collect data
-        //send to the server
 
+
+        //send to the server
+        handleBookingClose();
         e.preventDefault();
     }
 
@@ -56,9 +75,8 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             id="outlined-number"
                             placeholder='Hour'
                             type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            name='hour'
+                            onBlur={handleOnBlur}
                         />
                         <TextField
                             required
@@ -67,6 +85,8 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             placeholder='Your Name'
                             defaultValue={user.displayName}
                             type="text"
+                            name='clintName'
+                            onBlur={handleOnBlur}
                         />
                         <TextField
                             required
@@ -74,6 +94,8 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             id="outlined-number"
                             placeholder='Your Phone Number'
                             type="text"
+                            name='phone'
+                            onBlur={handleOnBlur}
                         />
                         <TextField
                             required
@@ -82,6 +104,8 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
                             placeholder='Your Email'
                             defaultValue={user.email}
                             type="email"
+                            name='email'
+                            onBlur={handleOnBlur}
                         />
                         <TextField
                             disabled
