@@ -25,9 +25,9 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Welcome to City of XYZ
+                        Welcome to Middili
                     </Typography>
-                    <Link to="/appoinment">
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/appoinment">
                         <Button color="inherit">Booking</Button>
                     </Link>
                     {

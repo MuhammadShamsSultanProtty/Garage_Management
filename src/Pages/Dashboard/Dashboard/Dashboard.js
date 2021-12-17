@@ -15,13 +15,15 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
-const drawerWidth = 220;
+import { Grid } from '@mui/material';
+import Calender from '../../Shared/Calender/Calender';
+import Appoinments from '../Appoinments/Appoinments';
+const drawerWidth = 195;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const [date, setDate] = React.useState(new Date());
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -109,10 +111,19 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Typography paragraph>
-                    content
-                </Typography>
-                <Typography paragraph>
-                    Content
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={4}>
+                            <Calender
+                                date={date}
+                                setDate={setDate}
+                            ></Calender>
+                        </Grid>
+                        <Grid item xs={12} md={8}>
+                            <Appoinments
+                                date={date}
+                            ></Appoinments>
+                        </Grid>
+                    </Grid>
                 </Typography>
             </Box>
         </Box>
