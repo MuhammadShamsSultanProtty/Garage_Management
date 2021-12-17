@@ -9,6 +9,7 @@ import {
 import Home from './Pages/Home/Home/Home';
 import Appoinment from './Pages/Appoinment/Appoinment/Appoinment';
 import Login from './Pages/Login/Login/Login';
+import Dashboard from '../src/Pages/Dashboard/Dashboard/Dashboard'
 import Register from './Pages/Login/Register/Register';
 import AuthProvider from './Contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
@@ -21,6 +22,9 @@ function App() {
           <Switch>
             <PrivateRoute path="/appoinment">
               <Appoinment />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
             </PrivateRoute>
             <Route path="/home">
               <Home />
