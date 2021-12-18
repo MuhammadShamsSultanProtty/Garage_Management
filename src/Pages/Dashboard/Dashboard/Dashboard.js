@@ -15,23 +15,42 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Calender from '../../Shared/Calender/Calender';
-import Appoinments from '../Appoinments/Appoinments';
+
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
+import { Button } from '@mui/material';
+import DashBoardHome from '../DashBoardHome/DashBoardHome';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddServices from '../AddServices/AddServices';
+
 const drawerWidth = 195;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+
+
+    let { path, url } = useRouteMatch();
 
     const drawer = (
         <div>
             <Toolbar />
             <Divider />
+            <Link to='/appoinment'><Button variant='text'>Booking   </Button></Link>
+            <br />
+            <Link to={`${url}`}><Button variant='text'>Dash board</Button></Link>
+            <Link to={`${url}/makeAdmin`}><Button variant='text'>Make Admin</Button></Link>
+            <Link to={`${url}/addServices`}><Button variant='text'>Add Services</Button></Link>
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
@@ -110,21 +129,20 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={4}>
-                            <Calender
-                                date={date}
-                                setDate={setDate}
-                            ></Calender>
-                        </Grid>
-                        <Grid item xs={12} md={8}>
-                            <Appoinments
-                                date={date}
-                            ></Appoinments>
-                        </Grid>
-                    </Grid>
-                </Typography>
+                <Switch>
+                    <Route exact path={path}>
+                        <DashBoardHome></DashBoardHome>
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </Route>
+                    <Route path={`${path}/addServices`}>
+                        <AddServices></AddServices>
+                    </Route>
+
+                </Switch>
+
+
             </Box>
         </Box>
     );

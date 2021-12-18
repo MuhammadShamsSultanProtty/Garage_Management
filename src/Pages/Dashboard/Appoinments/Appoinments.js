@@ -22,7 +22,7 @@ const Appoinments = ({ date }) => {
             <h2>Bookings are here!</h2>
             <h2>Total bookings:{appoinments.length}</h2>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="Booking table">
+                <Table sx={{ minWidth: 600 }} aria-label="Booking table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
