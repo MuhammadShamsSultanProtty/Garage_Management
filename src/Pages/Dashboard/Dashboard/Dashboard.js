@@ -29,6 +29,7 @@ import { Button } from '@mui/material';
 import DashBoardHome from '../DashBoardHome/DashBoardHome';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddServices from '../AddServices/AddServices';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 195;
 
@@ -41,7 +42,7 @@ function Dashboard(props) {
 
 
     let { path, url } = useRouteMatch();
-
+    const { admin } = useAuth();
     const drawer = (
         <div>
             <Toolbar />
@@ -49,8 +50,11 @@ function Dashboard(props) {
             <Link to='/appoinment'><Button variant='text'>Booking   </Button></Link>
             <br />
             <Link to={`${url}`}><Button variant='text'>Dash board</Button></Link>
-            <Link to={`${url}/makeAdmin`}><Button variant='text'>Make Admin</Button></Link>
-            <Link to={`${url}/addServices`}><Button variant='text'>Add Services</Button></Link>
+            {admin && <Box>
+                <Link to={`${url}/makeAdmin`}><Button variant='text'>Make Admin</Button></Link>
+                <Link to={`${url}/addServices`}><Button variant='text'>Add Services</Button></Link>
+            </Box>
+            }
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
