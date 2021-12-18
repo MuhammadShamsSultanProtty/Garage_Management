@@ -44,7 +44,7 @@ const Booking = ({ booking, date, setBookingSuccess }) => {
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             Number of seats :{seat}<br />
-                            Coast :{rate}
+                            Coast :$ {rate}
                         </Typography>
                     </CardContent>
                     <CardActions>

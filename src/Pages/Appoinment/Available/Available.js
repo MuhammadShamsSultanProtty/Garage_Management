@@ -12,42 +12,42 @@ const bookings = [
         id: 1,
         name: 'By cycle',
         seat: 1,
-        rate: '1$ per hour',
+        rate: 1,
         img: cycle1
     },
     {
         id: 2,
         name: 'Bike',
         seat: 2,
-        rate: '5$ per hour',
+        rate: 5,
         img: bike
     },
     {
         id: 3,
         name: 'Car',
         seat: 2,
-        rate: '8$ per hour',
+        rate: 8,
         img: car1
     },
     {
         id: 4,
         name: 'Car',
         seat: 4,
-        rate: '10$ per hour',
+        rate: 10,
         img: car2
     },
     {
         id: 5,
         name: 'Suv',
         seat: 5,
-        rate: '15$ per hour',
+        rate: 15,
         img: suv1
     },
     {
         id: 6,
         name: 'Suv',
         seat: 7,
-        rate: '18$ per hour',
+        rate: 18,
         img: suv2
     },
 
