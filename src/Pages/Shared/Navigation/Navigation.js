@@ -8,14 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-
+import HomeIcon from '@mui/icons-material/Home';
 const Navigation = () => {
     const { user, logout } = useAuth();
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
+                    {/* <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
@@ -23,10 +23,16 @@ const Navigation = () => {
                         sx={{ mr: 2 }}
                     >
                         <MenuIcon />
-                    </IconButton>
+                    </IconButton> */}
+
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+                        <Button color="inherit"> <HomeIcon></HomeIcon></Button>
+                    </Link>
+
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Welcome to Middili
+
                     </Typography>
+
                     <Link style={{ textDecoration: 'none', color: 'white' }} to="/appoinment">
                         <Button color="inherit">Booking</Button>
                     </Link>

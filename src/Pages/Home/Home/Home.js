@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
 import ManageServices from '../ManageServices/ManageServices';
@@ -13,6 +14,7 @@ const Home = () => {
             <Services></Services>
             <ManageServices></ManageServices>
             <SheduleBanner></SheduleBanner>
+            <Footer></Footer>
         </div>
     );
 };

@@ -9,12 +9,6 @@ const Singleser = ({ serv }) => {
         //     <p>{coast}</p>
         //     <p>{seat}</p>\
         //     <img style={{ width: '100px' }} src={`data:image/png;base64,${image}`} alt="" />
-
-
-
-
-
-
         // </Grid>
 
 

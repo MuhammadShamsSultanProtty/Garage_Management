@@ -15,7 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
+import HomeIcon from '@mui/icons-material/Home';
 
 import {
     BrowserRouter as Router,
@@ -25,11 +25,14 @@ import {
     useParams,
     useRouteMatch
 } from "react-router-dom";
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import DashBoardHome from '../DashBoardHome/DashBoardHome';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddServices from '../AddServices/AddServices';
 import useAuth from '../../../hooks/useAuth';
+import Footer from '../../Shared/Footer/Footer';
+import Navigation from '../../Shared/Navigation/Navigation';
+import Home from '../../Home/Home/Home';
 
 const drawerWidth = 195;
 
@@ -47,31 +50,24 @@ function Dashboard(props) {
         <div>
             <Toolbar />
             <Divider />
-            <Link to='/appoinment'><Button variant='text'>Booking   </Button></Link>
+            <Link to='/'><Button variant='text'><HomeIcon></HomeIcon> </Button></Link>
             <br />
-            <Link to={`${url}`}><Button variant='text'>Dash board</Button></Link>
+            <Link to='/appoinment' style={{ textDecoration: 'none' }}><Button variant='text'>Booking   </Button></Link>
+            <br />
+            <Link to={`${url}`} style={{ textDecoration: 'none' }}><Button variant='text'>Dash board</Button></Link>
             {admin && <Box>
-                <Link to={`${url}/makeAdmin`}><Button variant='text'>Make Admin</Button></Link>
-                <Link to={`${url}/addServices`}><Button variant='text'>Add Services</Button></Link>
+                <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none' }}><Button variant='text'>Make Admin</Button></Link>
+                <Link to={`${url}/addServices`} style={{ textDecoration: 'none' }}><Button variant='text'>Add Services</Button></Link>
             </Box>
             }
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+
 
         </div>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
-    return (
+    return (<>
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar
@@ -134,6 +130,14 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Switch>
+                    {/* <Route exact path={path}>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+                            <Button color="inherit"> <HomeIcon></HomeIcon></Button>
+                        </Link>
+                    </Route> */}
+                    <Route path={`${path}/home`}>
+                        <Home></Home>
+                    </Route>
                     <Route exact path={path}>
                         <DashBoardHome></DashBoardHome>
                     </Route>
@@ -148,7 +152,12 @@ function Dashboard(props) {
 
 
             </Box>
-        </Box>
+
+        </Box >
+        <Container style={{ marginLeft: "170px", marginTop: '300px', width: '100%', }}><Footer></Footer></Container>
+
+    </>
+
     );
 }
 

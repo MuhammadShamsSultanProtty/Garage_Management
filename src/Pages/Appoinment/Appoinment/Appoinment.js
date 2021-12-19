@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Available from '../Available/Available';
 import AppoinmentHeader from './Appoinment-Header/AppoinmentHeader';
@@ -10,6 +11,7 @@ const Appoinment = () => {
             <Navigation></Navigation>
             <AppoinmentHeader date={date} setDate={setDate}></AppoinmentHeader>
             <Available date={date}></Available>
+            <Footer></Footer>
         </div>
     );
 };
