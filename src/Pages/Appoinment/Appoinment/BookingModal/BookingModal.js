@@ -46,7 +46,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
         // console.log(appoinment);
 
         //send to the server
-        fetch('http://localhost:5000/appoinments', {
+        fetch('  https://intense-hamlet-43267.herokuapp.com/appoinments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -12,7 +12,7 @@ const Appoinments = ({ date }) => {
     const { user } = useAuth();
     const [appoinments, setAppoinments] = useState([]);
     useEffect(() => {
-        const url = `http://localhost:5000/appoinments?email=${user.email}&date=${date}`;
+        const url = `  https://intense-hamlet-43267.herokuapp.com/appoinments?email=${user.email}&date=${date}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setAppoinments(data));

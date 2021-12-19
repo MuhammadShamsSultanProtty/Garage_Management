@@ -20,7 +20,7 @@ const AddServices = () => {
 
 
 
-        fetch('http://localhost:5000/services', {
+        fetch('  https://intense-hamlet-43267.herokuapp.com/services', {
             method: 'POST',
             body: formData
         })
