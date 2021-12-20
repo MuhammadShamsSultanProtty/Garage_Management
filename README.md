@@ -17,7 +17,7 @@
 - Get any other services.
 
 
-## Features for users:
+## Features for admin:
 - Can login.
 - Register.
 - Google signin.
@@ -43,3 +43,9 @@
 
 ### Screenshots
 ![Home Page!](/screenshots/1.png "Home page")
+![Home Page!](/screenshots/2.png "Home page")
+![Home Page!](/screenshots/3.png "Home page")
+![Home Page!](/screenshots/4.png "Home page")
+![Home Page!](/screenshots/5.png "Home page")
+![Home Page!](/screenshots/6.png "Home page")
+![Home Page!](/screenshots/7.png "Home page")
