@@ -39,3 +39,7 @@
 
 *DB_USER=garage-admin
 *DB_PASS=admin
+
+
+### Screenshots
+![Home Page!](/screenshots/1.png "Home page")
